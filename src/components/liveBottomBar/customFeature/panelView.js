@@ -24,24 +24,21 @@ const TYDevice = TYSdk.device;
 
 class PanelView extends React.Component {
   static propTypes = {
-    productId: PropTypes.string.isRequired,
-    devInfo: PropTypes.object.isRequired,
+    // productId: PropTypes.string.isRequired,
+    // devInfo: PropTypes.object.isRequired,
     isAndriodFullScreenNavMode: PropTypes.bool.isRequired,
   };
   constructor(props) {
     super(props);
     this.state = {
-      bell_set: undefined,
-      motion_set: undefined,
-      VersionData: {},
-      update: false,
-      status: 0,
+      bell_set: 0,
+      motion_set: 0,
+      // VersionData: {},
+      // update: false,
+      // status: 0,
     };
   }
-  componentWillUnmount() {
-    TYEvent.off('deviceDataChange');
-    TYEvent.off('getSupportStorage');
-  }
+
   componentDidMount() {
     TYDevice.putDeviceData({ [236]: 242 }); //bell
     TYDevice.putDeviceData({ [236]: 249 }); //micro
@@ -65,10 +62,10 @@ class PanelView extends React.Component {
           motion_set: val,
         });
       }
-      if (changedp['bell_switch'] !== undefined) {
-        console.log('changedp bell_switch: ' + changedp['bell_switch']);
+      if (changedp.bell_switch !== undefined) {
+        // console.log('changedp bell_switch: ' + changedp['bell_switch']);
         let val = 0;
-        if (changedp['bell_switch'] === 'record') {
+        if (changedp.bell_switch === 'record') {
           val = 1;
         } else {
           val = 0;
@@ -137,7 +134,10 @@ class PanelView extends React.Component {
       // }
     });
   }
-
+  componentWillUnmount() {
+    TYEvent.off('deviceDataChange');
+    TYEvent.off('getSupportStorage');
+  }
   // handleOnChkUpgrade = () => {
   //   const { VersionData, update, status } = this.state;
   //   console.log('VersionData', VersionData);
@@ -291,6 +291,7 @@ class PanelView extends React.Component {
 
   onClickBell = () => {
     console.log('onClickBell');
+    // eslint-disable-next-line camelcase
     const { bell_set } = this.state;
     const BellData = [
       // {
@@ -322,7 +323,8 @@ class PanelView extends React.Component {
 
   onClickMotion = () => {
     console.log('onClickMotion');
-    const { bell_set, motion_set } = this.state;
+    // eslint-disable-next-line camelcase
+    const { motion_set } = this.state;
     const MotionData = [
       // {
       //   value: 0,
