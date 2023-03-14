@@ -1,0 +1,25 @@
+cd {project}
+1.react-native version
+react-native --version //to check version as 0.51.0
+npm install --save react-native@0.51.0//install node_modules
+
+2.install node_modules
+npm install//install node_modules tuya-panel-kit
+or tuya_panel_kit_cli.exe package ./ //install node_modules and  tuya kit
+
+3.simulate
+react-native upgrade //make android project
+react-native run-android
+yarn && yarn start
+
+4.adb tool
+adb.exe connect 127.0.0.1:62001
+adb.exe reverse tcp:8081 tcp:8081
+
+5.app debug
+install debug app
+add debug device by qr
+click menu of phone to reload
+
+6.else
+npm install react-native-md5 --save
